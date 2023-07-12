@@ -1,0 +1,43 @@
+nav{
+    background-color: #03001C;
+}
+.userSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+    
+
+    .iconUser{
+        display: flex;
+        flex-direction: row;
+        margin-right: 12px;
+
+        
+
+        p{
+            margin-left: 5px;
+            color: white;
+        }
+    }
+
+
+    .userImage{
+        width: 8%;
+        
+    }
+
+}
+
+
+
+
+
+.btn{
+    border: none;
+    border-radius: 10px;
+    background-color: #301E67;
+    color: white;
+    padding: 5px;
+    margin-right: 5px;
+}

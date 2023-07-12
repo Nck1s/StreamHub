@@ -1,0 +1,71 @@
+<div *ngIf="serie" class="article-container">
+    <h2>{{serie.Nombre}}</h2>
+    <img src="{{serie.Portada}}" alt="{{serie.Nombre}}" />
+    <div class="contenedorIconos">
+        <a href="{{serie.Trailer}}"><button class="button"><img class="icon" src="../../../assets/play-solid.svg" alt="play"></button></a>
+        <button class="button" routerLink="/series/{{serie._id}}" (click)="addFavoritos()"><img [ngClass]="{'fav': favoritos.includes(id)}" class="icon" src="../../../assets/heart-solid.svg" alt="heart"></button>
+    </div>
+
+    <div class="contenedorTexto">
+        <h4>Valoración de los Usuarios</h4>
+        <h6>{{serie.Valoracion}} ⭐</h6>
+        <h5>Descripción</h5>
+        <p>{{serie.Descripcion}}</p>
+        <h6>Genero</h6>
+        <ul class="contenedorCategorias">
+            <li class="categorias" *ngFor="let genr of serie.Genero">
+                <p class="categoria">{{genr}}</p>
+            </li>
+        </ul>
+
+        <!-- <div class="contenedorCapitulos">
+            <h6>Capítulos</h6>
+            <li *ngFor="let capitulo of serie.Capitulos" class="contenedorCapitulo">
+                <div class="capitulo1">
+                    <img src="{{capitulo.Icono}}" alt="{{capitulo.Nombre}}" />
+                    <p>{{capitulo.Nombre}}</p>
+                </div>
+                <div class="capitulo2">
+                    <p>Duración: {{capitulo.Duracion}} minutos</p>
+                    <p>Temporada {{capitulo.Temporada}}</p>
+                    <p>{{capitulo.Descripcion}}</p>
+                </div>
+            </li>
+        </div>
+    </div> -->
+
+    <div class="container text-center">
+        <div class="row g-2 g-lg-3">
+          <div class="row-cols" *ngFor="let capitulo of serie.Capitulos">
+            <div class="p-3">
+                <div class="img-container">
+                    <img src="{{capitulo.Icono}}" alt="{{capitulo.Nombre}}" />
+                </div>
+                <div class="text-container">
+                    <h5>{{capitulo.Nombre}}</h5>
+                    <p>{{capitulo.Descripcion}}</p>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <app-resena-serie [idSerie]="serie._id"></app-resena-serie>
+
+    <h4>Reseñas: </h4>
+    <div class="contenedor">
+        <li *ngFor="let resena of serie.Resena" class="contenedorReseñas">
+            <div class="reseñas" >
+                <h3>{{resena.Username.Username}}</h3>
+                <p class="titulo">{{resena.Titulo}}</p>
+                <p>{{resena.Comentario}}</p>
+                <p-rating [(ngModel)]="resena.Valoracion" [cancel]="false" [readonly]="true"></p-rating>
+            </div>
+        </li>
+    </div>
+    <div class="contenedorBotones">
+        <button class="botonEditar"*ngIf="authService.getRole() == 'admin'" (click)="editSerie(serie)">Editar Serie</button>
+    <button class="botonEliminar" *ngIf="authService.getRole() == 'admin'" (click)="deleteSerie()">Eliminar Serie</button>
+    
+</div>
+</div>

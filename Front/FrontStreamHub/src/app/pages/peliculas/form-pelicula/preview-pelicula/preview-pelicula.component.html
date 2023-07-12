@@ -1,0 +1,16 @@
+<div class="product" *ngIf="pelicula">
+    <article>
+        <div class="contenedorimg">
+            <img src="{{pelicula.Portada}}">
+        </div>
+        <div class="contenedortexto">
+            <h3>Título: {{pelicula.Nombre}}</h3>
+            <p class="price">Duración: {{pelicula.Duracion}}</p>
+            <p class="price">Categoría: {{pelicula.Genero}}</p>
+            <p class="description">Descripción: {{pelicula.Descripcion}}</p>
+        </div>
+    </article>
+</div>
+
+
+
